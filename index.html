@@ -469,6 +469,12 @@
     const confirmBtn = document.getElementById('confirm-booking-btn');
     if (confirmBtn) {
             confirmBtn.addEventListener('click', function() {
+                // Pastikan waktu custom terambil jika diisi manual tanpa klik tombol pilihan
+                const customTimeEl = document.getElementById('custom-time');
+                if (!state.selectedTime && customTimeEl && customTimeEl.value) {
+                    state.selectedTime = customTimeEl.value;
+                }
+
                 // Validation
                 if (!state.customRequest && !state.referenceImage) {
                     alert('Please describe your look or upload a reference image!');
@@ -484,18 +490,22 @@
                 const phoneNumber = "62881022218911";
                 
                 const messageLines = [
-                    "*New Booking Request* ✂️",
+                    "*New Booking Request* ",
                     "",
-                    `📅 *Time:* ${state.selectedTime}`,
-                    `📝 *Description:* ${state.customRequest || 'N/A'}`,
-                    `📍 *Location:* ${state.locationLink || 'Not Shared'}`,
-                    `💳 *Payment:* ${state.paymentMethod || 'Not Selected'}`,
-                    `🖼️ *Reference Image:* ${state.referenceImage ? state.referenceImage + ' (Will send separately)' : 'None'}`,
+                    `➤ *Time:* ${state.selectedTime}`,
+                    `➤ *Description:* ${state.customRequest || 'N/A'}`,
+                    `➤ *Location:* ${state.locationLink || 'Not Shared'}`,
+                    `➤ *Payment:* ${state.paymentMethod || 'Not Selected'}`,
+                    `➤ *Reference Image:* ${state.referenceImage ? state.referenceImage + ' (Foto akan dikirim)' : 'None'}`,
                     "",
                     "Please confirm my appointment."
                 ];
                 
                 const text = encodeURIComponent(messageLines.join('\n'));
+
+                if (state.referenceImage) {
+                    alert('WhatsApp akan terbuka. Jangan lupa untuk mengirimkan foto referensi Anda di chat!');
+                }
 
                 // Open WhatsApp
                 window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
