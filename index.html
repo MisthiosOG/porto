@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Barber Booking | Precision Grooming</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#D81B60",
+                        "background-light": "#fce4ec",
+                        "background-dark": "#120a0f",
+                        "accent-gold": "#D4AF37",
+                        "neutral-charcoal": "#261019",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-primary/20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white">content_cut</span>
+</div>
+<span class="text-xl font-900 tracking-tighter uppercase">Blade &amp; Blue</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Layout -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="max-w-5xl mx-auto">
+<!-- Selection Area (Left) -->
+<div class="space-y-12">
+<!-- Hero Section -->
+<section class="relative overflow-hidden rounded-xl bg-neutral-charcoal border border-primary/20 p-8 md:p-12">
+<div class="relative z-10 max-w-2xl">
+<h1 class="text-4xl md:text-6xl font-900 text-white mb-4 uppercase leading-tight">Precision <span class="text-primary">Redefined.</span></h1>
+<p class="text-slate-400 text-lg mb-8 font-medium">Book your signature style in seconds. High-performance grooming for the modern gentleman.</p>
+<button class="bg-primary hover:bg-pink-700 text-white px-8 py-4 rounded font-bold uppercase tracking-wider transition-all flex items-center gap-2">
+                            Quick Book Now <span class="material-icons">bolt</span>
+</button>
+</div>
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none">
+<img alt="Barber Shop Interior" class="w-full h-full object-cover" data-alt="Modern barbershop interior with leather chairs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7C-XlGeSqUbEqlO994YJRfi6W_qH32uCPcvGNVnCMikNpkMwydIgxRKjRTdKEUR6yr8XJvZTMo4i6VtdQkrg7uPmPOQnVwsCgqCNt5B2RexHfD7yezEc8ZKYkvmKLLWB3XK58BnbeLLKw9v5Le9qoLK3o973nDfioflCjtpGZISw4hW_SCEypk5Q2A5f_mkjlH2Um4_djWhnQF8GzZrduOKWecNilA_LCIrxLfSH13L-CoZ7o0CvFB850UyWT4b-2vzMVQjEr6mtO"/>
+</div>
+</section>
+<!-- Section 2: Custom Request -->
+<section id="custom-section" class="bg-neutral-charcoal border border-slate-700 rounded-xl p-8">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-icons text-primary">auto_fix_high</span>
+<h2 class="text-2xl font-800 uppercase tracking-tight">Custom Request</h2>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div>
+<label class="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Describe Your Look</label>
+<textarea class="w-full bg-background-dark border-slate-700 rounded-lg focus:ring-primary focus:border-primary text-slate-100 placeholder-slate-600 p-4 min-h-[160px] resize-none" placeholder="I want a mid-drop fade with more volume on top, textured with sea salt spray..."></textarea>
+<div class="mt-3">
+<button id="share-loc-btn" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold py-3 px-4 rounded border border-slate-700 flex items-center justify-center gap-2 transition-colors">
+<span class="material-icons text-sm">location_on</span>
+Share Location (WhatsApp Method)
+</button>
+<p id="loc-status" class="text-[10px] text-green-400 mt-2 text-center hidden">Location coordinates attached!</p>
+</div>
+</div>
+<div class="flex flex-col">
+<label class="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Reference Image</label>
+<div class="flex-1 border-2 border-dashed border-slate-700 rounded-lg flex flex-col items-center justify-center p-6 hover:bg-background-dark transition-colors cursor-pointer mb-6">
+<span class="material-icons text-4xl text-slate-600 mb-2">cloud_upload</span>
+<p class="text-slate-500 font-medium text-center text-sm">Drag and drop or <span class="text-primary">browse files</span></p>
+<p class="text-slate-600 text-xs mt-1">JPG, PNG up to 10MB</p>
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Select Time</label>
+<div class="grid grid-cols-3 gap-2 mb-6">
+<button class="time-slot bg-background-dark border border-slate-700 text-slate-300 text-xs font-bold p-3 rounded hover:border-primary transition-colors">10:00 AM</button>
+<button class="time-slot bg-background-dark border border-slate-700 text-slate-300 text-xs font-bold p-3 rounded hover:border-primary transition-colors">02:00 PM</button>
+<button class="time-slot bg-background-dark border border-slate-700 text-slate-300 text-xs font-bold p-3 rounded hover:border-primary transition-colors">04:30 PM</button>
+</div>
+<button class="w-full bg-primary hover:bg-pink-700 text-white py-4 rounded font-bold uppercase tracking-widest transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 group">
+                            Confirm Booking
+                            <span class="material-icons text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-slate-800 py-12 bg-neutral-charcoal">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-4 gap-8">
+<div class="col-span-2">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-sm">content_cut</span>
+</div>
+<span class="text-lg font-900 tracking-tighter uppercase">Blade &amp; Blue</span>
+</div>
+<p class="text-slate-500 max-w-sm font-medium">The premier destination for modern grooming. Established 2018. Redefining the barbershop experience through digital-first precision.</p>
+</div>
+<div>
+<h4 class="font-bold text-white mb-4 uppercase tracking-widest text-sm">Navigation</h4>
+<ul class="space-y-2 text-sm text-slate-400 font-medium">
+<li><a class="hover:text-primary" href="#">Pricing Plans</a></li>
+<li><a class="hover:text-primary" href="#">Style Portfolio</a></li>
+<li><a class="hover:text-primary" href="#">Our Barbers</a></li>
+<li><a class="hover:text-primary" href="#">Franchise</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-4 uppercase tracking-widest text-sm">Connect</h4>
+<div class="flex gap-4">
+<a class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center hover:bg-primary transition-colors text-white" href="#">
+<span class="material-icons text-sm">facebook</span>
+</a>
+<a class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center hover:bg-primary transition-colors text-white" href="#">
+<span class="material-icons text-sm">alternate_email</span>
+</a>
+<a class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center hover:bg-primary transition-colors text-white" href="#">
+<span class="material-icons text-sm">local_phone</span>
+</a>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-slate-800 text-center text-[10px] text-slate-600 font-bold uppercase tracking-[.2em]">
+                © 2024 BLADE &amp; BLUE PRECISION GROOMING. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+
+<script>
+    // =====================
+    // Global State
+    // =====================
+    const state = {
+        selectedProfessional: null,
+        selectedTime: null,
+        customRequest: '',
+        referenceImage: null,
+        locationLink: null
+    };
+
+    // =====================
+    // Time Slot Selection
+    // =====================
+    document.querySelectorAll('.time-slot').forEach(button => {
+        button.addEventListener('click', function() {
+            // Deselect all time buttons
+            document.querySelectorAll('.time-slot').forEach(btn => {
+                btn.classList.remove('bg-primary', 'shadow-lg', 'shadow-primary/20', 'border-primary');
+                btn.classList.add('bg-background-dark', 'border-slate-700');
+            });
+            
+            // Select clicked button
+            this.classList.remove('bg-background-dark', 'border-slate-700');
+            this.classList.add('bg-primary', 'shadow-lg', 'shadow-primary/20', 'border-primary');
+            
+            state.selectedTime = this.textContent.trim();
+        });
+    });
+
+    // =====================
+    // Professional Selection
+    // =====================
+    const professionalSelect = document.querySelector('select');
+    if (professionalSelect) {
+        professionalSelect.addEventListener('change', function() {
+            state.selectedProfessional = this.value;
+        });
+    }
+
+    // =====================
+    // Custom Request Textarea
+    // =====================
+    const customRequestTextarea = document.querySelector('textarea[placeholder*="mid-drop fade"]');
+    if (customRequestTextarea) {
+        customRequestTextarea.addEventListener('input', function() {
+            state.customRequest = this.value;
+        });
+    }
+
+    // =====================
+    // Share Location Logic
+    // =====================
+    const locBtn = document.getElementById('share-loc-btn');
+    const locStatus = document.getElementById('loc-status');
+    
+    if (locBtn) {
+        locBtn.addEventListener('click', function() {
+            if (navigator.geolocation) {
+                locBtn.innerHTML = '<span class="material-icons animate-spin text-sm">refresh</span> Getting Location...';
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                    state.locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                    locBtn.innerHTML = '<span class="material-icons text-green-500 text-sm">check</span> Location Attached';
+                    locBtn.classList.add('border-green-500/50', 'text-green-400');
+                    if (locStatus) locStatus.classList.remove('hidden');
+                }, (err) => {
+                    alert('Could not get location. Please allow location access.');
+                    locBtn.innerHTML = '<span class="material-icons text-sm">location_on</span> Retry Share Location';
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        });
+    }
+
+    // =====================
+    // File Upload
+    // =====================
+    const uploadArea = document.querySelector('.border-2.border-dashed');
+    if (uploadArea) {
+        uploadArea.addEventListener('click', function() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/jpeg,image/png';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    handleFileUpload(file);
+                }
+            };
+            input.click();
+        });
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('border-primary', 'bg-background-dark');
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.classList.remove('border-primary', 'bg-background-dark');
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('border-primary', 'bg-background-dark');
+            
+            const file = e.dataTransfer.files[0];
+            if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+                handleFileUpload(file);
+            } else {
+                alert('Please upload JPG or PNG files only!');
+            }
+        });
+    }
+
+    function handleFileUpload(file) {
+        if (file.size > 10 * 1024 * 1024) {
+            alert('File size must be less than 10MB!');
+            return;
+        }
+        
+        state.referenceImage = file.name;
+        
+        // Update upload area to show selected file
+        const uploadArea = document.querySelector('.border-2.border-dashed');
+        if (uploadArea) {
+            uploadArea.innerHTML = `
+                <span class="material-icons text-4xl text-primary mb-2">check_circle</span>
+                <p class="text-slate-500 font-medium text-center text-sm">${file.name}</p>
+                <p class="text-slate-600 text-xs mt-1">Click to change</p>
+            `;
+        }
+    }
+
+    // =====================
+    // Update Order Summary
+    // =====================
+    function updateOrderSummary() {
+        const summaryContainer = document.querySelector('.p-6.space-y-6');
+        if (!summaryContainer) return;
+
+        // Custom request logic
+        let subtotal = 0; // Base price for custom request is variable
+        let serviceFee = 25;
+        
+        const total = subtotal + serviceFee;
+
+        // Update totals
+        const subtotalEl = summaryContainer.querySelector('.flex.justify-between.text-sm:first-child');
+        const serviceFeeEl = summaryContainer.querySelector('.flex.justify-between.text-sm:nth-child(2)');
+        const totalEl = summaryContainer.querySelector('.text-2xl.font-900.text-accent-gold');
+
+        if (subtotalEl) {
+            subtotalEl.querySelector('span:last-child').textContent = `VARIES`;
+        }
+        if (serviceFeeEl) {
+            serviceFeeEl.querySelector('span:last-child').textContent = `${serviceFee} CR`;
+        }
+        if (totalEl) {
+            totalEl.textContent = `${serviceFee} CR + Service`;
+        }
+    }
+
+    // =====================
+    // Confirm Booking
+    // =====================
+    document.querySelectorAll('button').forEach(btn => {
+        if (btn.textContent.includes('Confirm Booking')) {
+            btn.addEventListener('click', function() {
+                // Validation
+                if (!state.customRequest && !state.referenceImage) {
+                    alert('Please describe your look or upload a reference image!');
+                    return;
+                }
+                
+                if (!state.selectedTime) {
+                    alert('Please select a preferred time!');
+                    return;
+                }
+
+                // Prepare WhatsApp Message
+                const phoneNumber = "62881022218911";
+                const text = `*New Booking Request* ✂️%0A%0A` +
+                    `*Time:* ${state.selectedTime}%0A` +
+                    `*Description:* ${state.customRequest || 'N/A'}%0A` +
+                    `*Location:* ${state.locationLink || 'Not Shared'}%0A` +
+                    `*Reference Image:* ${state.referenceImage ? state.referenceImage + ' (Will send separately)' : 'None'}%0A%0A` +
+                    `Please confirm my appointment.`;
+
+                // Open WhatsApp
+                window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+                
+                // Reset form
+                state.selectedTime = null;
+                state.customRequest = '';
+                state.referenceImage = null;
+                
+                // Reset UI
+                
+                document.querySelectorAll('.time-slot').forEach(btn => {
+                    btn.classList.remove('bg-primary', 'shadow-lg', 'shadow-primary/20', 'border-primary');
+                    btn.classList.add('bg-background-dark', 'border-slate-700');
+                });
+                
+                if (customRequestTextarea) customRequestTextarea.value = '';
+                
+                const uploadArea = document.querySelector('.border-2.border-dashed');
+                if (uploadArea) {
+                    uploadArea.innerHTML = `
+                        <span class="material-icons text-4xl text-slate-600 mb-2">cloud_upload</span>
+                        <p class="text-slate-500 font-medium text-center text-sm">Drag and drop or <span class="text-primary">browse files</span></p>
+                        <p class="text-slate-600 text-xs mt-1">JPG, PNG up to 10MB</p>
+                    `;
+                }
+                
+                updateOrderSummary();
+            });
+        }
+    });
+
+    // =====================
+    // Navigation Links
+    // =====================
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('href');
+            
+            if (target === '#') {
+                // Show a message for demo purposes
+                console.log('Navigation to:', this.textContent);
+            } else {
+                const element = document.querySelector(target);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
+    // =====================
+    // Quick Book Now Button
+    // =====================
+    document.querySelectorAll('button').forEach(btn => {
+        if (btn.textContent.includes('Quick Book Now')) {
+            btn.addEventListener('click', function() {
+                // Scroll to style selection
+                const styleSection = document.getElementById('custom-section');
+                if (styleSection) {
+                    styleSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Barber Booking App Initialized!');
+        
+        // Set default professional
+        if (professionalSelect && professionalSelect.value) {
+            state.selectedProfessional = professionalSelect.value;
+        }
+
+        // Initialize summary
+        updateOrderSummary();
+    });
+</script>
+</body></html>
+index.html
